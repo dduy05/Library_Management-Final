@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ thống Quản lý Thư viện</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans h-screen w-screen overflow-hidden flex">
+    
+    <!-- Sidebar (280px fixed left) -->
+    <aside class="w-[280px] bg-navy-900 text-white flex flex-col h-full flex-shrink-0 shadow-xl z-20">
+      <div class="p-6 h-16 border-b border-navy-800 flex items-center gap-3">
+        <span class="text-indigo-400 text-2xl">📚</span> 
+        <span class="text-xl font-bold tracking-wide">Library App</span>
+      </div>
+      <nav class="flex-1 overflow-y-auto p-4 space-y-1 mt-2" id="sidebar-menu">
+        <!-- Render Sidebar Menus Here -->
+      </nav>
+      <div class="p-4 border-t border-navy-800 text-xs text-navy-400 text-center">
+        © 2026 Admin Dashboard
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+      <!-- Topbar -->
+      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 flex-shrink-0 z-10 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="relative hidden sm:block">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </span>
+            <input type="text" placeholder="Tìm kiếm sách, bạn đọc..." class="pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white w-72 text-sm transition-all" />
+          </div>
+        </div>
+        <div class="flex items-center gap-5">
+          <!-- Notification Bell -->
+          <div class="relative">
+            <button id="notification-bell" class="relative text-gray-400 hover:text-indigo-600 transition-colors">
+               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+               <span id="notification-dot" class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full hidden"></span>
+            </button>
+            
+            <!-- Notification Popover -->
+            <div id="notification-popover" class="absolute right-0 mt-3 w-80 bg-white border border-gray-200 rounded-2xl shadow-xl z-[100] hidden animate-fade-in divide-y divide-gray-100 overflow-hidden">
+                <div class="p-4 flex items-center justify-between bg-gray-50/50">
+                    <h4 class="font-bold text-navy-900 text-sm">Thông báo</h4>
+                    <button onclick="window.markAllNotificationsRead()" class="text-[10px] text-indigo-600 font-bold hover:underline">Đã đọc tất cả</button>
+                </div>
+                <div id="notification-list" class="max-h-96 overflow-y-auto">
+                    <!-- Notifications will be injected here -->
+                </div>
+            </div>
+          </div>
+          
+          <!-- Profile Badge -->
+          <div class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-1.5 pr-3 rounded-full border border-transparent hover:border-gray-200 transition-all">
+            <img src="https://ui-avatars.com/api/?name=User&background=6366F1&color=fff" alt="Profile" class="w-8 h-8 rounded-full shadow-sm">
+            <div class="flex flex-col hidden md:flex">
+                <span class="text-sm font-semibold text-gray-700 leading-tight">Trần Văn A</span>
+                <span class="text-xs text-gray-400">Sinh viên</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area (Slot for JS Router to inject) -->
+      <main class="flex-1 overflow-y-auto bg-gray-50/50 p-6 md:p-8" id="app-content">
+         <!-- Content Pages are injected here via JS -->
+      </main>
+    </div>
+
+    <!-- Cảnh báo nếu JS không chạy -->
+    <noscript>
+      <div class="fixed inset-0 bg-white flex items-center justify-center z-50">
+        <div class="text-center">
+            <h1 class="text-2xl font-bold text-red-600">Vui lòng bật JavaScript</h1>
+            <p class="text-gray-500 mt-2">Ứng dụng yêu cầu JavaScript để hoạt động.</p>
+        </div>
+      </div>
+    </noscript>
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
